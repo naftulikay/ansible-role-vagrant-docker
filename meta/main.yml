@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  name: vagrant-docker
+  version: 'v0.0.0'
+  author: Naftuli Kay
+  description: Install and configure Docker on a system.
+
+  license: MIT
+
+  min_ansible_version: 2.2
+
+  platforms:
+    - name: EL
+      versions: [7]
+    - name: Ubuntu
+      versions: [trusty, xenial]
+
+  galaxy_tags: [docker]
+
+dependencies:
+  - role: naftulikay.docker
+    docker_users: "{{ vagrant_user | default('vagrant') }}"
+  - role: naftulikay.vagrant-base

@@ -1,0 +1,31 @@
+---
+- name: create user
+  hosts: all
+  become: true
+  tasks:
+    - user: name={{ item }} state=present
+      with_items: [vagrant, vagrant2]
+
+- name: role (defaults)
+  hosts: all
+  become: true
+  roles: [vagrant-docker]
+
+- name: role (custom)
+  hosts: all
+  become: true
+  roles:
+    - role: vagrant-docker
+      vagrant_user: vagrant2
+
+- name: test
+  hosts: all
+  become: true
+  roles:
+    - role: degoss
+      degoss_debug: true
+      degoss_no_clean: true
+      goss_file: goss.yml
+      goss_addtl_dirs: [goss.d/]
+      goss_env_vars:
+        is_docker: "{{ ansible_virtualization_type == \"docker\" | string | lower }}"

@@ -1,0 +1,6 @@
+---
+- name: degoss
+  src: naftulikay.degoss
+# actual dependencies
+- src: naftulikay.docker
+- src: naftulikay.vagrant-base

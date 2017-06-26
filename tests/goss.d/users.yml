@@ -1,0 +1,13 @@
+---
+user:
+  # defaults
+  # vagrant:
+  #   exists: true
+  #   groups:
+  #     contain-element: docker
+
+  # custom run
+  vagrant2:
+    exists: true
+    groups:
+      contain-element: docker

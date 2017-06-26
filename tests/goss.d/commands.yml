@@ -1,0 +1,4 @@
+---
+command:
+  'docker {{ if eq .Env.is_docker "true" }}-H tcp://docker:2375{{ end }} ps':
+    exit-status: 0

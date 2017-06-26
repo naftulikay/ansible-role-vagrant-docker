@@ -1,0 +1,10 @@
+---
+file:
+  '/etc/profile.d/99-docker-in-docker.sh':
+    exists: {{ .Env.is_docker }}
+{{ if eq .Env.is_docker "true" }}
+    owner: root
+    group: root
+    mode: "0755"
+    filetype: file
+{{ end }}
