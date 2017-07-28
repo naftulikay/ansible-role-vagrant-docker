@@ -1,7 +1,7 @@
 # ansible-role-vagrant-docker [![Build Status][svg:travis]][travis]
 
 An Ansible role for installing, configuring, and starting Docker within a Vagrant machine. Simply depends on the
-upstream [`naftulikay.docker`][docker-galaxy] and [`naftulikay.vagrant-base`][vagrant-base-galaxy] roles and
+upstream [`naftulikay.docker`][docker] and [`naftulikay.vagrant-base`][vagrant-base] roles and
 specifies that `vagrant_user` should be added to the `docker` system group.
 
 Available on Ansible Galaxy at [`naftulikay.vagrant-docker`][galaxy].
@@ -22,7 +22,8 @@ additional supported variables.
 
 ## Dependencies
 
-None.
+ - [`naftulikay.docker`][docker]: Installs and configures Docker.
+ - [`naftulikay.vagrant-base`][vagrant-base]: Provides base Vagrant configuration.
 
 ## Example Playbook
 
@@ -47,9 +48,7 @@ If your Vagrant box uses a non-`vagrant` name for the Vagrant user:
 - name: install
   hosts: all
   become: true
-  vars:
-    vagrant_user: notvagrant
-  roles: [vagrant-docker]
+  roles: [{ role: vagrant-docker, vagrant_user: notvagrant }]
 ```
 
 ## License
