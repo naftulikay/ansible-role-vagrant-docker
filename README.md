@@ -17,6 +17,9 @@ Officially tested operating systems are listed in the Galaxy manifest.
   <dd>The user name of the Vagrant user, defaults to <code>vagrant</code>.</dd>
 <dl>
 
+> Please see the upstream [`naftulikay.vagrant-base`][vagrant-base] and [`naftulikay.docker`][docker] roles for
+additional supported variables.
+
 ## Dependencies
 
 None.
@@ -54,8 +57,8 @@ If your Vagrant box uses a non-`vagrant` name for the Vagrant user:
 MIT
 
 
- [svg:travis]: https://travis-ci.org/naftulikay/ansible-role-docker.svg?branch=master
- [travis]: https://travis-ci.org/naftulikay/ansible-role-docker
+ [svg:travis]: https://travis-ci.org/naftulikay/ansible-role-vagrant-docker.svg?branch=master
+ [travis]: https://travis-ci.org/naftulikay/ansible-role-vagrant-docker
  [galaxy]: https://galaxy.ansible.com/naftulikay/vagrant-docker/
- [docker-galaxy]: https://galaxy.ansible.com/naftulikay/docker/
- [vagrant-base-galaxy]: https://galaxy.ansible.com/naftulikay/docker/
+ [vagrant-base]: https://galaxy.ansible.com/naftulikay/vagrant-base/
+ [docker]: https://galaxy.ansible.com/naftulikay/docker/
