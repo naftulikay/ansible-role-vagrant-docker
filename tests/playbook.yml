@@ -9,14 +9,12 @@
 - name: role (defaults)
   hosts: all
   become: true
-  roles: [vagrant-docker]
+  roles: [{ role: vagrant-docker }]
 
 - name: role (custom)
   hosts: all
   become: true
-  roles:
-    - role: vagrant-docker
-      vagrant_user: vagrant2
+  roles: [{ role: vagrant-docker, vagrant_user: vagrant2 }]
 
 - name: test
   hosts: all

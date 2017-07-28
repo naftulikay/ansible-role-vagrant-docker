@@ -19,5 +19,6 @@ galaxy_info:
 
 dependencies:
   - role: naftulikay.docker
-    docker_users: "{{ vagrant_user | default('vagrant') }}"
+    docker_users: ["{{ vagrant_user | default('vagrant_user') }}"]
   - role: naftulikay.vagrant-base
+    vagrant_user: vagrant
