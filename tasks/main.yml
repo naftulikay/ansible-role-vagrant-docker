@@ -1,0 +1,4 @@
+---
+- name: install docker compose
+  package: name=docker-compose state=present
+  when: ansible_distribution_release != "trusty"
