@@ -1,6 +1,3 @@
 ---
-- name: vagrant-base
-  src: naftulikay.vagrant-base
-
-- name: docker
-  src: naftulikay.docker
+- name: vagrant-docker
+  src: naftulikay.vagrant-docker
