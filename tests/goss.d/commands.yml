@@ -6,7 +6,5 @@ command:
   'docker {{ if eq .Env.is_docker "true" }}-H tcp://docker:2375{{ end }} ps':
     exit-status: 0
 
-{{ if eq .Env.has_docker_compose "true" }}
   'which docker-compose':
     exit-status: 0
-{{ end }}

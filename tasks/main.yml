@@ -1,4 +1,49 @@
 ---
+- name: detect latest version
+  uri:
+    url: https://github.com/docker/compose/releases/latest
+    status_code: 302
+    follow_redirects: false
+  register: detected_latest_url
+  changed_when: false
+
+- name: establish version
+  set_fact:
+    docker_compose_version: "{{ detected_latest_url.location | regex_replace(docker_compose_matcher, docker_compose_replace) }}"
+
+- name: establish download facts
+  set_fact:
+    docker_compose_completion_url: "https://raw.githubusercontent.com/docker/compose/1.21.0/contrib/completion/bash/docker-compose"
+    docker_compose_download_path: /usr/local/share/docker-compose/{{ docker_compose_version }}/docker-compose
+    docker_compose_download_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system | lower }}-{{ ansible_architecture }}"
+
+- name: create install directory
+  file: path=/usr/local/share/docker-compose/{{ docker_compose_version }} state=directory owner=root group=root
+  become: true
+
 - name: install docker compose
-  package: name=docker-compose state=present
-  when: ansible_distribution_release != "trusty"
+  get_url:
+    url: "{{ docker_compose_download_url }}"
+    dest: "{{ docker_compose_download_path }}"
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+
+- name: install docker compose completions
+  get_url:
+    url: "{{ docker_compose_completion_url }}"
+    dest: "/etc/bash_completion.d/docker-compose.sh"
+    mode: 0644
+    owner: root
+    group: root
+  become: true
+
+- name: symlink docker compose
+  file:
+    src: "{{ docker_compose_download_path }}"
+    dest: /usr/local/bin/docker-compose
+    state: link
+    owner: root
+    group: root
+  become: true

@@ -1,3 +1,6 @@
 ---
 vagrant_user: vagrant
 docker_users: ["{{ vagrant_user }}"]
+
+docker_compose_matcher: ^https://github.com/docker/compose/releases/tag/(?P<release>\d+\.\d+\.\d+)$
+docker_compose_replace: \g<release>

@@ -1,6 +1,5 @@
 ---
 dist: trusty
-sudo: required
 
 matrix:
   fast_finish: true
@@ -13,11 +12,12 @@ env:
     ROLE_NAME: docker
 
   matrix: # each entry is its own run
-    - IMAGE_NAME: naftulikay/centos-vm:7
-    - IMAGE_NAME: naftulikay/xenial-vm:latest
-    - IMAGE_NAME: naftulikay/trusty-vm:latest
+    - IMAGE: centos7
+    - IMAGE: loki
+    - IMAGE: xenial
+    - IMAGE: trusty
 
-script: make test-clean
+script: make test
 
 notifications:
   email:
