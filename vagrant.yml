@@ -3,5 +3,4 @@
   become: true
   roles:
     - role: vagrant-base
-    - role: docker
-      docker_users: vagrant
+    - role: vagrant-docker

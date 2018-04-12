@@ -3,18 +3,12 @@
   hosts: all
   become: true
   tasks:
-    - user: name={{ item }} state=present
-      with_items: [vagrant, vagrant2]
+    - user: name=vagrant state=present
 
-- name: role (defaults)
+- name: build
   hosts: all
   become: true
-  roles: [{ role: vagrant-docker }]
-
-- name: role (custom)
-  hosts: all
-  become: true
-  roles: [{ role: vagrant-docker, vagrant_user: vagrant2 }]
+  roles: [{ role: default }]
 
 - name: test
   hosts: all
@@ -26,5 +20,4 @@
       goss_file: goss.yml
       goss_addtl_dirs: [goss.d]
       goss_env_vars:
-        has_docker_compose: '{% if ansible_distribution_release != "trusty" %}true{% else %}false{% endif %}'
         is_docker: "{{ ansible_virtualization_type == \"docker\" | string | lower }}"

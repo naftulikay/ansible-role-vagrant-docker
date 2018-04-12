@@ -1,5 +1,7 @@
 ---
 file:
+  '/etc/bash_completion.d/docker-compose.sh':
+    exists: true
   '/etc/profile.d/99-docker-in-docker.sh':
     exists: {{ .Env.is_docker }}
 {{ if eq .Env.is_docker "true" }}
